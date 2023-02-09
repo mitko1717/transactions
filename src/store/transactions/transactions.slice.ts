@@ -1,10 +1,12 @@
-import { createSlice, PayloadAction, current, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { IState } from "../../models/interfaces";
 import { transactionsApi } from "./transactions.api";
+import { DATA } from "../../utils/DATA";
 
 const initialState: IState = {
-  data: null,
+  dataList: null,
+  filteredList: DATA,
 };
 
 const fetchData = createAsyncThunk("data", async (user) => {
@@ -20,21 +22,19 @@ export const transactionsSlice = createSlice({
   name: "transactions",
   initialState,
   reducers: {
-    // setArticle(state, action: PayloadAction<IArticle>) {
-    //   state.openedArticle = action.payload;
-    // },
+    setFiltersByStatus(state, action) {
+      // state.filteredList = action.payload;
+    },
+    setFiltersByType(state, action) {
+      // state.filteredList = action.payload;
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchData.fulfilled, (state, action) => {
-      // console.log(action.payload);
-      // state.data = action.payload;
-    });
     builder.addMatcher(
       transactionsApi.endpoints.getData.matchFulfilled,
       (state, { payload }) => {
-        state.data = payload
-        console.log((state.data));
-        
+        state.dataList = payload
+        state.filteredList = payload
       }
     )
   }

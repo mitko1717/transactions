@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
 
 export interface IState {
-    data: IObject[] | null;
+    dataList: IObject[] | null;
+    filteredList: IObject[];
 }
 
 export interface IObject {
@@ -11,3 +12,9 @@ export interface IObject {
     ClientName: string;
     Amount: string;
 }
+
+export type PaginationProps = {
+  nPages: number;
+  currentPage: number;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
+};
