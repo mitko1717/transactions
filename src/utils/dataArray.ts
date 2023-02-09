@@ -4,9 +4,9 @@ import { DATA } from "./DATA"
 
 const mockNetWorkResponse = () => {
     const mock = new MockAdapter(axios);
-    mock.onGet(`/`).reply(200, DATA);
+    mock.onGet(`/data`).reply(200, DATA);
   };
   
-  export {
-    mockNetWorkResponse,
-  };
+export {
+  mockNetWorkResponse,
+};

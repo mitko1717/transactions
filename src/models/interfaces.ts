@@ -1,23 +1,13 @@
-export interface IArticle {
-  id: number;
-  title: string;
-  url: string;
-  imageUrl: string;
-  newsSite: string;
-  summary: string;
-  publishedAt: Date;
-  updatedAt: Date;
-  featured: boolean;
-  launches: any[];
-  events: any[];
+import { Dispatch, SetStateAction } from "react";
+
+export interface IState {
+    data: IObject[] | null;
 }
 
-export type SummaryProps = {
-  summary: string;
-  query: string;
-};
-
-export type TitleProps = {
-  title: string;
-  query: string;
-};
+export interface IObject {
+    TransactionId: number;
+    Status: string;
+    Type: string;
+    ClientName: string;
+    Amount: string;
+}
