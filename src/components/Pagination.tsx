@@ -10,7 +10,7 @@ export const Pagination: FC<PaginationProps> = ({
   setCurrentPage,
 }) => {
   const { filteredList } = useAppSelector((state) => state.transactions);
-  
+
   const pageNumberss = [...Array.from(Array(nPages + 1).keys())].slice(1);
   const [maxPageLimit, setMaxPageLimit] = useState(5);
   const [minPageLimit, setMinPageLimit] = useState(0);

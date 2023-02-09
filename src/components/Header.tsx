@@ -1,15 +1,21 @@
-import React from 'react'
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Button from '@mui/material/Button';
+import SelectStatus from "./StatusSelect";
+import SelectType from "./TypeSelect";
 
 const Header = () => {
-const [age, setAge] = React.useState('');
 
-const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
-};
   return (
-    <div>Header</div>
-  )
-}
+    <div className="flex gap-x-6">
+      <div className="flex gap-x-2">
+        <SelectStatus />
+        <SelectType />
+      </div>
+      <div className="flex gap-x-2">
+      <Button variant="contained" disabled>Import</Button>
+      <Button variant="contained" disabled>Export</Button>
+      </div>
+    </div>
+  );
+};
 
-export default Header
+export default Header;

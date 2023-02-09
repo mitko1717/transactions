@@ -9,17 +9,23 @@ export type IListProps = {
 };
 
 const List: FC<IListProps> = ({ list }) => {
-  const { } = useActions(); 
+  const {} = useActions();
 
   return (
-    <div className="flex flex-col w-[60%] h-[50%]">
-      <div className="w-full h-full m-2 border border-black border-solid p-4">
-        <div className="flex w-full bg-slate-600 text-white font-bold">
-          {TABLE.map(i => (
-            <span key={i.name} style={{width: `${i.width}`}} className={`p-1 text-center`}>{i.name}</span>
+    <div className="flex flex-col w-[70%] h-auto">
+      <div className="w-full h-full my-4">
+        <div className="flex w-full bg-slate-700 text-white font-bold">
+          {TABLE.map((i) => (
+            <span
+              key={i.name}
+              style={{ width: `${i.width}` }}
+              className={`p-1 text-center`}
+            >
+              {i.name}
+            </span>
           ))}
         </div>
-        {list && list.map(l => <ListItem key={l.TransactionId} item={l}/>)}
+        {list && list.map((l) => <ListItem key={l.TransactionId} item={l} />)}
       </div>
     </div>
   );

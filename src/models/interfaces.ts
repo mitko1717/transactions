@@ -1,16 +1,19 @@
 import { Dispatch, SetStateAction } from "react";
 
 export interface IState {
-    dataList: IObject[] | null;
-    filteredList: IObject[];
+  dataList: IObject[];
+  filteredList: IObject[];
+  statusFilter: string;
+  typeFilter: string;
+  chosenTransaction: IObject | null
 }
 
 export interface IObject {
-    TransactionId: number;
-    Status: string;
-    Type: string;
-    ClientName: string;
-    Amount: string;
+  TransactionId: number;
+  Status: string;
+  Type: string;
+  ClientName: string;
+  Amount: string;
 }
 
 export type PaginationProps = {

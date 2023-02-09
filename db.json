@@ -1,4 +1,5 @@
-{"data": [
+{
+  "data": [
     {
       "TransactionId": 1,
       "Status": "Pending",
@@ -699,5 +700,5 @@
       "ClientName": "Mark Velazquez",
       "Amount": "$66.59"
     }
-]
+  ]
 }
