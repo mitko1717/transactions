@@ -20,7 +20,7 @@ export const TABLE = [
     width: "15%",
   },
   {
-    name: "action",
+    name: "actions",
     width: "25%",
   },
 ];

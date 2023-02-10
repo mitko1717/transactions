@@ -11,7 +11,9 @@ import SelectStatus from "./components/StatusSelect";
 
 function App() {
   const { isLoading, isError, data } = useGetDataQuery("");
-  const { filteredList, statusFilter, typeFilter } = useAppSelector((state) => state.transactions);
+  const { filteredList, statusFilter, typeFilter } = useAppSelector(
+    (state) => state.transactions
+  );
   const { setFilters } = useActions();
 
   const [currentRecords, setCurrentRecords] = useState<IObject[]>([]);
@@ -31,8 +33,8 @@ function App() {
   const nPages: number = (data && Math.ceil(data.length / recordsPerPage)) || 1;
 
   useEffect(() => {
-    setFilters()
-  }, [statusFilter, typeFilter])
+    setFilters();
+  }, [statusFilter, typeFilter]);
 
   return (
     <div className="w-full h-[100vh] bg-slate-400 p-4">

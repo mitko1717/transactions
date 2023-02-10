@@ -1,3 +1,4 @@
+import { IObject } from './../../models/interfaces';
 import { createSlice, PayloadAction, current } from "@reduxjs/toolkit";
 import { IState } from "../../models/interfaces";
 import { transactionsApi } from "./transactions.api";
@@ -16,19 +17,32 @@ export const transactionsSlice = createSlice({
   initialState,
   reducers: {
     setStatus (state, action) {
-      state.statusFilter = action.payload      
+      state.statusFilter = action.payload;
     },
     setType (state, action) {
-      state.typeFilter = action.payload
+      state.typeFilter = action.payload;
     },
-    setFilters(state) {
-      if (state.statusFilter !== "" && state.typeFilter !== "") {        
-        state.filteredList = state.dataList.filter(obj => obj.Status === state.statusFilter).filter(obj => obj.Type === state.typeFilter)
+    setChosenTransaction (state, action) {
+
+    },
+    deleteTransaction (state, action: PayloadAction<IObject>) {
+      state.dataList = state.dataList.filter(i => i.TransactionId !== action.payload.TransactionId)
+      state.filteredList = state.filteredList.filter(i => i.TransactionId !== action.payload.TransactionId)
+    },
+    setFilters (state) {
+      if (state.statusFilter !== "" && state.typeFilter !== "") {
+        state.filteredList = state.dataList
+          .filter((obj) => obj.Status === state.statusFilter)
+          .filter((obj) => obj.Type === state.typeFilter);
       } else if (state.statusFilter !== "" && state.typeFilter === "") {
-        state.filteredList = state.dataList.filter(obj => obj.Status === state.statusFilter)
+        state.filteredList = state.dataList.filter(
+          (obj) => obj.Status === state.statusFilter
+        );
       } else if (state.statusFilter === "" && state.typeFilter !== "") {
-        state.filteredList = state.dataList.filter(obj => obj.Type === state.typeFilter)
-      } else state.filteredList = state.dataList
+        state.filteredList = state.dataList.filter(
+          (obj) => obj.Type === state.typeFilter
+        );
+      } else state.filteredList = state.dataList;
     },
   },
   extraReducers: (builder) => {

@@ -5,7 +5,7 @@ export interface IState {
   filteredList: IObject[];
   statusFilter: string;
   typeFilter: string;
-  chosenTransaction: IObject | null
+  chosenTransaction: IObject | null;
 }
 
 export interface IObject {
@@ -20,4 +20,9 @@ export type PaginationProps = {
   nPages: number;
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
+};
+
+export type ModalProps = {
+  isModalOpen: boolean;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 };
