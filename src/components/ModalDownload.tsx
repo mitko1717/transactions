@@ -20,9 +20,7 @@ const style = {
 };
 
 const ModalForm: FC<ModalProps> = ({ isModalOpen, setIsModalOpen }) => {
-    const { dataList } = useAppSelector(
-        (state) => state.transactions
-    );
+  const { dataList } = useAppSelector((state) => state.transactions);
 
   const handleClose = () => {
     setIsModalOpen(false);
@@ -43,17 +41,20 @@ const ModalForm: FC<ModalProps> = ({ isModalOpen, setIsModalOpen }) => {
               <span className="text-2xl font-bold text-gray-400">CLOSE</span>
             </Button>
           </span>
-          <h2 className="font-bold text-2xl mt-16"> do you want to download csv-file?</h2>
+          <h2 className="font-bold text-2xl mt-16">
+            {" "}
+            do you want to download csv-file?
+          </h2>
 
-        <div className="mt-4 mx-auto flex justify-center">
+          <div className="mt-4 mx-auto flex justify-center">
             <CSVLink data={dataList}>
-                <Button variant="contained">
-                <span className="text-2xl font-bold text-gray-100">download</span>
-                </Button>
+              <Button variant="contained">
+                <span className="text-2xl font-bold text-gray-100">
+                  download
+                </span>
+              </Button>
             </CSVLink>
-        </div>
-
-
+          </div>
         </Box>
       </Modal>
     </>

@@ -1,4 +1,4 @@
-import { IObject } from './../../models/interfaces';
+import { IObject } from "./../../models/interfaces";
 import { createSlice, PayloadAction, current } from "@reduxjs/toolkit";
 import { IState } from "../../models/interfaces";
 import { transactionsApi } from "./transactions.api";
@@ -16,20 +16,24 @@ export const transactionsSlice = createSlice({
   name: "transactions",
   initialState,
   reducers: {
-    setStatus (state, action) {
+    setStatus(state, action) {
       state.statusFilter = action.payload;
     },
-    setType (state, action) {
+    setType(state, action) {
       state.typeFilter = action.payload;
     },
-    setChosenTransaction (state, action) {
-
+    setChosenTransaction(state, action: PayloadAction<IObject>) {
+      state.chosenTransaction = action.payload;
     },
-    deleteTransaction (state, action: PayloadAction<IObject>) {
-      state.dataList = state.dataList.filter(i => i.TransactionId !== action.payload.TransactionId)
-      state.filteredList = state.filteredList.filter(i => i.TransactionId !== action.payload.TransactionId)
+    deleteTransaction(state, action: PayloadAction<IObject>) {
+      state.dataList = state.dataList.filter(
+        (i) => i.TransactionId !== action.payload.TransactionId
+      );
+      state.filteredList = state.filteredList.filter(
+        (i) => i.TransactionId !== action.payload.TransactionId
+      );
     },
-    setFilters (state) {
+    setFilters(state) {
       if (state.statusFilter !== "" && state.typeFilter !== "") {
         state.filteredList = state.dataList
           .filter((obj) => obj.Status === state.statusFilter)

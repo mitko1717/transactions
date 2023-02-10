@@ -10,13 +10,13 @@ export type IListItemProps = {
 
 const ListItem: FC<IListItemProps> = ({ item }) => {
   const { setChosenTransaction, deleteTransaction } = useActions();
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpen = () => {
+    setChosenTransaction(item);
     setIsModalOpen(true);
   };
 
-  
   return (
     <div
       className={`flex w-full ${
@@ -29,16 +29,21 @@ const ListItem: FC<IListItemProps> = ({ item }) => {
       <span className="p-1 text-center w-[20%]">{item.ClientName}</span>
       <span className="p-1 text-center w-[15%]">{item.Amount}</span>
       <span className="p-1 text-center w-[25%] flex gap-x-1 justify-center">
-      <Button size="small" variant="contained" onClick={handleOpen}>
+        <Button size="small" variant="contained" onClick={handleOpen}>
           edit
         </Button>
-        <Button size="small" variant="contained" onClick={() => deleteTransaction(item)}>
+        <Button
+          size="small"
+          variant="contained"
+          onClick={() => deleteTransaction(item)}
+        >
           delete
         </Button>
       </span>
-      
-      {isModalOpen && <ModalEdit isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>}
 
+      {isModalOpen && (
+        <ModalEdit isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      )}
     </div>
   );
 };

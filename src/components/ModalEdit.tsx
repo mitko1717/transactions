@@ -1,11 +1,12 @@
 import { Box, Modal } from "@mui/material";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { ModalProps } from "../models/interfaces";
 import Button from "@mui/material/Button/";
-import { CSVLink } from "react-csv";
 import { useAppSelector } from "../hooks/redux";
-import SelectType from "./TypeSelect";
-import SelectStatus from "./StatusSelect";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 const style = {
   position: "absolute" as "absolute",
@@ -22,13 +23,24 @@ const style = {
 };
 
 const ModalEdit: FC<ModalProps> = ({ isModalOpen, setIsModalOpen }) => {
-    const { dataList } = useAppSelector(
-        (state) => state.transactions
-    );
+  const { chosenTransaction } = useAppSelector((state) => state.transactions);
+  const [status, setStatus] = useState(chosenTransaction?.Status);
+  const [type, setType] = useState(chosenTransaction?.Type);
 
   const handleClose = () => {
     setIsModalOpen(false);
   };
+
+  const handleChangeStatus = (event: SelectChangeEvent) => {
+    setStatus(event.target.value as string);
+  };
+
+  const handleChangeType = (event: SelectChangeEvent) => {
+    setType(event.target.value as string);
+  };
+
+  const StatusOptions = ["Pending", "Completed", "Canceled"];
+  const TypeOptions = ["Refill", "Withdrawal"];
 
   return (
     <>
@@ -45,9 +57,45 @@ const ModalEdit: FC<ModalProps> = ({ isModalOpen, setIsModalOpen }) => {
               <span className="text-2xl font-bold text-gray-400">CLOSE</span>
             </Button>
           </span>
-          <h2 className="font-bold text-2xl mt-16 text-center">edit transaction</h2>
-          {/* <SelectStatus isForEdit={true}/> */}
-          {/* <SelectType isForEdit={true}/> */}
+          <h2 className="font-bold text-2xl mt-16 text-center">
+            edit transaction
+          </h2>
+
+          <div className="flex gap-2 mt-4">
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Status</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={status}
+                label="Status"
+                onChange={handleChangeStatus}
+              >
+                {StatusOptions.map((name) => (
+                  <MenuItem key={name} value={name}>
+                    {name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Type</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={type}
+                label="Type"
+                onChange={handleChangeType}
+              >
+                {TypeOptions.map((name) => (
+                  <MenuItem key={name} value={name}>
+                    {name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
         </Box>
       </Modal>
     </>

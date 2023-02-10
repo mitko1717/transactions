@@ -5,7 +5,7 @@ import SelectStatus from "./StatusSelect";
 import SelectType from "./TypeSelect";
 
 const Header = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpen = () => {
     setIsModalOpen(true);
@@ -26,7 +26,7 @@ const Header = () => {
         </Button>
       </div>
 
-      <ModalForm isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
+      <ModalForm isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );
 };

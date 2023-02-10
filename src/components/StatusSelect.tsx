@@ -1,11 +1,11 @@
-import { Theme, useTheme } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { useState } from 'react';
-import { useActions } from '../hooks/actions';
+import { Theme, useTheme } from "@mui/material/styles";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { useState } from "react";
+import { useActions } from "../hooks/actions";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -39,16 +39,14 @@ export default function SelectStatus() {
     const {
       target: { value },
     } = event;
-    setStatusFilter(
-      typeof value === 'string' ? value.split(',') : value,
-    );
-    setStatus(typeof value === 'string' ? value.split(',')[0] : value)
+    setStatusFilter(typeof value === "string" ? value.split(",") : value);
+    setStatus(typeof value === "string" ? value.split(",")[0] : value);
   };
 
   const clearSelect = () => {
-    setStatusFilter([])
-    setStatus("")
-  }
+    setStatusFilter([]);
+    setStatus("");
+  };
 
   return (
     <div>
