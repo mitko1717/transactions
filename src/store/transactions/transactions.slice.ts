@@ -33,6 +33,23 @@ export const transactionsSlice = createSlice({
         (i) => i.TransactionId !== action.payload.TransactionId
       );
     },
+    changeTransaction(state, action) {
+      let transaction = state.filteredList.find(
+        (tr) => tr.TransactionId === state.chosenTransaction?.TransactionId
+      );
+      transaction = transaction && { ...transaction, Status: action.payload };
+      let filteredIndex = state.filteredList.findIndex(
+        (e) => e.TransactionId === transaction?.TransactionId
+      );
+      if (transaction !== undefined)
+        state.filteredList[filteredIndex] = transaction;
+
+      let dataListIndex = state.dataList.findIndex(
+        (e) => e.TransactionId === transaction?.TransactionId
+      );
+      if (transaction !== undefined)
+        state.dataList[dataListIndex] = transaction;
+    },
     setFilters(state) {
       if (state.statusFilter !== "" && state.typeFilter !== "") {
         state.filteredList = state.dataList

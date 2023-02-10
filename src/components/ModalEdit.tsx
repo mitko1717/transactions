@@ -7,6 +7,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { useActions } from "../hooks/actions";
 
 const style = {
   position: "absolute" as "absolute",
@@ -24,10 +25,11 @@ const style = {
 
 const ModalEdit: FC<ModalProps> = ({ isModalOpen, setIsModalOpen }) => {
   const { chosenTransaction } = useAppSelector((state) => state.transactions);
+  const { changeTransaction } = useActions();
   const [status, setStatus] = useState(chosenTransaction?.Status);
-  const [type, setType] = useState(chosenTransaction?.Type);
 
   const handleClose = () => {
+    changeTransaction(status);
     setIsModalOpen(false);
   };
 
@@ -35,13 +37,7 @@ const ModalEdit: FC<ModalProps> = ({ isModalOpen, setIsModalOpen }) => {
     setStatus(event.target.value as string);
   };
 
-  const handleChangeType = (event: SelectChangeEvent) => {
-    setType(event.target.value as string);
-  };
-
   const StatusOptions = ["Pending", "Completed", "Canceled"];
-  const TypeOptions = ["Refill", "Withdrawal"];
-
   return (
     <>
       <Modal
@@ -70,6 +66,7 @@ const ModalEdit: FC<ModalProps> = ({ isModalOpen, setIsModalOpen }) => {
                 value={status}
                 label="Status"
                 onChange={handleChangeStatus}
+                defaultValue={""}
               >
                 {StatusOptions.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -78,23 +75,12 @@ const ModalEdit: FC<ModalProps> = ({ isModalOpen, setIsModalOpen }) => {
                 ))}
               </Select>
             </FormControl>
+          </div>
 
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Type</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={type}
-                label="Type"
-                onChange={handleChangeType}
-              >
-                {TypeOptions.map((name) => (
-                  <MenuItem key={name} value={name}>
-                    {name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+          <div className="mt-4 flex justify-center">
+            <Button variant="contained" type="submit" onClick={handleClose}>
+              <span className="text-2xl font-bold text-gray-400">SAVE</span>
+            </Button>
           </div>
         </Box>
       </Modal>

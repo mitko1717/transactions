@@ -6,9 +6,10 @@ import ModalEdit from "./ModalEdit";
 
 export type IListItemProps = {
   item: IObject;
+  index: number;
 };
 
-const ListItem: FC<IListItemProps> = ({ item }) => {
+const ListItem: FC<IListItemProps> = ({ item, index }) => {
   const { setChosenTransaction, deleteTransaction } = useActions();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -20,7 +21,7 @@ const ListItem: FC<IListItemProps> = ({ item }) => {
   return (
     <div
       className={`flex w-full ${
-        item.TransactionId % 2 === 0 ? "bg-slate-400" : "bg-slate-300"
+        index % 2 === 0 ? "bg-slate-400" : "bg-slate-300"
       }`}
     >
       <span className="p-1 text-center w-[10%]">{item.TransactionId}</span>

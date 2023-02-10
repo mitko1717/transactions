@@ -59,6 +59,7 @@ export default function SelectStatus() {
           onChange={handleChange}
           input={<OutlinedInput label="Status" />}
           MenuProps={MenuProps}
+          defaultValue={[""]}
         >
           {StatusOptions.map((name) => (
             <MenuItem

@@ -59,6 +59,7 @@ export default function SelectType() {
           onChange={handleChange}
           input={<OutlinedInput label="Type" />}
           MenuProps={MenuProps}
+          defaultValue={[""]}
         >
           {TypeOptions.map((name) => (
             <MenuItem
