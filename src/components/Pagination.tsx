@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import NextBtn from "./Arrows/NextButton";
 import PrevBtn from "./Arrows/PrevButton";
 import { PaginationProps } from "../models/interfaces";

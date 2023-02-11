@@ -1,12 +1,8 @@
 import { FC } from "react";
 import { useActions } from "../hooks/actions";
-import { IObject } from "../models/interfaces";
+import { IListProps } from "../models/interfaces";
 import ListItem from "./ListItem";
 import { TABLE } from "../utils/TABLE";
-
-export type IListProps = {
-  list: IObject[] | undefined;
-};
 
 const List: FC<IListProps> = ({ list }) => {
   const {} = useActions();

@@ -1,13 +1,8 @@
 import { FC, useState } from "react";
-import { IObject } from "../models/interfaces";
+import { IListItemProps } from "../models/interfaces";
 import Button from "@mui/material/Button";
 import { useActions } from "../hooks/actions";
 import ModalEdit from "./ModalEdit";
-
-export type IListItemProps = {
-  item: IObject;
-  index: number;
-};
 
 const ListItem: FC<IListItemProps> = ({ item, index }) => {
   const { setChosenTransaction, deleteTransaction } = useActions();

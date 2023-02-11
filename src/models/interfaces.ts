@@ -26,3 +26,12 @@ export type ModalProps = {
   isModalOpen: boolean;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 };
+
+export type IListItemProps = {
+  item: IObject;
+  index: number;
+};
+
+export type IListProps = {
+  list: IObject[] | undefined;
+};
